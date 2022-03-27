@@ -1,5 +1,5 @@
 describe('Navigation', () => {
-  it('find hihi', () => {
+  it('find hihihi', () => {
     // Start from the index page
     cy.visit('http://localhost:3000/');
 
@@ -10,6 +10,6 @@ describe('Navigation', () => {
     cy.url().should('include', '/about');
 
     // The new page should contain an h1 with "About page"
-    cy.get('a').contains('hihi');
+    cy.get('a').contains('hihihi');
   });
 });
