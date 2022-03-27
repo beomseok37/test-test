@@ -5,7 +5,7 @@ on: pull_request
 jobs:
   test:
     runs-on: ubuntu-latest
-    container: cypress/browsers
+    container: cypress/browsers:node16.5.0-chrome97-ff96
     steps:
       - uses: actions/checkout@v2
       - uses: cypress-io/github-action@v2
