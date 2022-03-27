@@ -11,3 +11,5 @@ jobs:
         with:
           build: yarn run build
           start: yarn start
+      - run: yarn install --immutable --immutable-cache --check-cache
+      - run: yarn test
