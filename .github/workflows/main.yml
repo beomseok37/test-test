@@ -11,5 +11,5 @@ jobs:
         with:
           build: npm run build
           start: npm start
-      - run: npm ci
+      - run: npm install
       - run: npm test
