@@ -11,5 +11,3 @@ jobs:
         with:
           build: yarn run build
           start: yarn start
-      - run: yarn install
-      - run: yarn test
