@@ -10,6 +10,6 @@ describe('Navigation', () => {
     cy.url().should('include', '/about');
 
     // The new page should contain an h1 with "About page"
-    cy.get('a').contains('hihihi');
+    cy.get('a').contains('hihi');
   });
 });
