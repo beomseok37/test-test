@@ -15,34 +15,35 @@ jobs:
           path: ./.yarn/cache
           key: yarn-${{ hashFiles('**/yarn.lock') }}
       - run: yarn install --immutable
-
+      - uses: actions/upload-artifact@v3
+        with:
+          name: yarn-cache
+          path: ./.yarn/
   e2e-test:
+    needs: install
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
           node-version: '16'
-      - uses: actions/cache@v3
+      - uses: actions/download-artifact@v3
         with:
-          path: ./.yarn/cache
-          key: yarn-${{ hashFiles('**/yarn.lock') }}
+          name: yarn-cache
       - uses: cypress-io/github-action@v2
         with:
-          install-command: yarn install --immutable
           build: yarn run build
           start: yarn start
           command: yarn run test:e2e:run
   unit-test:
+    needs: install
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
           node-version: '16'
-      - uses: actions/cache@v3
+      - uses: actions/download-artifact@v3
         with:
-          path: ./.yarn/cache
-          key: yarn-${{ hashFiles('**/yarn.lock') }}
-      - run: yarn install --immutable
+          name: yarn-cache
       - run: yarn test:unit
