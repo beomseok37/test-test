@@ -3,7 +3,16 @@ name: CI
 on: pull_request
 
 jobs:
-  test:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+      - run: yarn install --immutable
+
+  e2e-test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -12,7 +21,16 @@ jobs:
           node-version: '16'
       - uses: cypress-io/github-action@v2
         with:
+          install-command: yarn install --immutable
           build: yarn run build
           start: yarn start
-      - run: yarn install --immutable --immutable-cache --check-cache
-      - run: yarn test
+          command: yarn run test:e2e:run
+  unit-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+      - run: yarn install --immutable
+      - run: yarn test:unit

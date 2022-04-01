@@ -5,10 +5,9 @@
     "build": "next build",
     "start": "next start",
     "cypress": "cypress open",
-    "test": "jest",
-    "cypress:headless": "cypress run",
-    "e2e": "start-server-and-test dev http://localhost:3000 cypress",
-    "e2e:headless": "start-server-and-test dev http://localhost:3000 cypress:headless"
+    "test:unit": "jest",
+    "test:e2e:open": "cypress open",
+    "test:e2e:run": "cypress run"
   },
   "dependencies": {
     "jest": "^27.5.1",
